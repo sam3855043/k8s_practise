@@ -13,7 +13,7 @@
 
 ### 1.Difference Between docker run and docker start
 |**Command**| **Description**|	**Use Case**|
-|-----------|----------------|--------------|
+|----------------|----------------|--------------|
 |docker run	|Creates and starts a new container from an image. If the container doesn’t exist, it builds one.	|Used when you need a new container instance.|
 docker start|	Restarts an existing, stopped container. It does not create a new one.	|Used when you want to resume a previously stopped container.|
 
