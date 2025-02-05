@@ -26,9 +26,9 @@ When you use docker run, it creates a new container from an image and starts it.
 
 Key Characteristics of docker run
 
-✅ Always creates a new container.
-✅ If the same container name already exists, it fails unless removed.
-✅ If you exit the container, it stays unless --rm is used.
+✅ Always creates a new container.<br>
+✅ If the same container name already exists, it fails unless removed.<br>
+✅ If you exit the container, it stays unless --rm is used.<br>
 
 
 ### 2.docker start - Restart an Existing Container
@@ -42,14 +42,14 @@ The container must already exist (from a previous docker run).
 
 Key Characteristics of docker start
 
-✅ Reuses an existing container.
-✅ Does not create a new container.
-✅ Keeps existing configurations, volumes, and data.
+✅ Reuses an existing container.<br>
+✅ Does not create a new container.<br>
+✅ Keeps existing configurations, volumes, and data.<br>
 
 
 
 
-*** 3.When to Use Which?
+#### 3.When to Use Which?
 | **Scenario** |**Command to Use**|
 |--------------|----------------------|
 |Run a brand new container from an image|docker run|
@@ -59,12 +59,12 @@ Key Characteristics of docker start
 |Resume a stopped container without changes|	docker start|<container_name>
 
 Example Workflow<br>
-	> 1. Run a new container:<br>
-      >>  docker run -d --name my_flask_app -p 5000:5000 flask-app
-    > 2.	Stop it:
-      >> docker stop my_flask_app
-    > 3. Restart it later:
-      >> docker start my_flask_app
+> 1. Run a new container:<br>
+  >>  docker run -d --name my_flask_app -p 5000:5000 flask-app
+> 2.	Stop it:
+  >> docker stop my_flask_app
+> 3. Restart it later:
+  >> docker start my_flask_app
 
 4. Bonus: Starting with attach
 
@@ -78,8 +78,8 @@ Summary
 |------------|-------------|---------|
 |Creates a new container|	✅ Yes|	❌ No|
 |Starts an existing container|	❌ No|	✅ Yes|
-|Assigns a new ID	✅ Yes|	❌ No|
-|Uses an existing container	❌ No	|✅ Yes|
+|Assigns a new ID	|✅ Yes|	❌ No|
+|Uses an existing container	|❌ No	|✅ Yes|
 |Stops when the process ends|	✅ Yes|	✅ Yes|
 
 
