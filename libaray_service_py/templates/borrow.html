@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>借閱管理</title>
+</head>
+<body>
+    <h1>借閱管理</h1>
+    <a href="{{ url_for('manage_books') }}">返回圖書管理</a>
+    <hr>
+
+    <h2>借閱書籍</h2>
+    <ul>
+        {% for book in books %}
+            {% if not book.is_borrowed %}
+                <li>
+                    {{ book.title }} - {{ book.author }}
+                    <form action="{{ url_for('borrow_book', book_id=book.id) }}" method="POST" style="display:inline;">
+                        <input type="text" name="borrower_name" placeholder="借閱者姓名" required>
+                        <button type="submit">借閱</button>
+                    </form>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <h2>已借出書籍</h2>
+    <ul>
+        {% for record in records %}
+            <li>
+                《{{ record.book.title }}》 借閱者: {{ record.borrower_name }}
+                <form action="{{ url_for('return_book', book_id=record.book.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">歸還</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

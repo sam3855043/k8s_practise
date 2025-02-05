@@ -1,0 +1,27 @@
+# 使用輕量版 Python 作為基底映像檔（可以根據需要調整版本）
+FROM python:3.9-slim
+
+RUN mkdir /app
+# 設定工作目錄
+WORKDIR /app
+
+RUN pwd
+# 複製需求檔到容器內，並安裝依賴
+COPY requirements.txt .
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+# 複製應用程式原始碼到容器內
+COPY . .
+
+# 設定環境變數，告知 Flask 的應用程式入口，並綁定至 0.0.0.0 讓外部可連接
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5010
+
+# 開放容器內的 5000 埠口（Flask 預設運行在此埠口）
+EXPOSE 5010
+RUN pip show flask
+# 啟動 Flask 應用
+CMD ["flask", "run"]
+#CMD ["/bin/sh"]
