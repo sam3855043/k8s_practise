@@ -60,11 +60,11 @@ Key Characteristics of docker start
 
 Example Workflow<br>
 > 1. Run a new container:<br>
-  >>  docker run -d --name my_flask_app -p 5000:5000 flask-app
+  >>  ``docker run -d --name my_flask_app -p 5000:5000 flask-app``
 > 2.	Stop it:
-  >> docker stop my_flask_app
+  >> ``docker stop my_flask_app``
 > 3. Restart it later:
-  >> docker start my_flask_app
+  >> ``docker start my_flask_app``
 
 4. Bonus: Starting with attach
 
