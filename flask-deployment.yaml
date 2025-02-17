@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment #這是一個 Deployment，用於管理多個相同的 Pod 副本。
+metadata:
+  name: flask-deployment
+spec:
+  replicas: 3  # 定義 3 個副本，Kubernetes 會管理這些 Pod
+  selector:
+    matchLabels:
+      app: flask-book-app #確保 Deployment 只管理 app: flask-book-app 的 Pod，與 flask-service.yaml 內的 selector 相匹配。
+  template:
+    metadata:
+      labels:
+        app: flask-book-app #設置 Pod 的 label，以便 Service 可以找到這些 Pod。
+    spec:
+      containers:
+      - name: flask-container
+        image: flask-book-app:latest  # 你的 Flask 應用 Docker 映像
+        imagePullPolicy: Never  # 不從 Docker Hub 拉取映像
+        ports:
+        - containerPort: 5010

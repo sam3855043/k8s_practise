@@ -1,0 +1,13 @@
+apiVersion: v1  # 這表示這個 YAML 文件是 Kubernetes v1 API 的資源
+kind: Service  # 定義 Kubernetes 的一個 Service，負責將流量導向特定的 Pod
+metadata:
+  name: flask-service  # 服務的名稱，其他 Pod 或應用程式可以透過這個名稱存取服務
+spec:
+  type: NodePort  # 這個 Service 使用 NodePort，將內部流量暴露到節點的特定端口，方便外部存取
+  selector:
+    app: flask-book-app  # 選擇標籤為 `app: flask-book-app` 的 Pod，流量將導向這些 Pod
+  ports:
+  - protocol: TCP  # 使用 TCP 協議
+    port: 5010  # 這是 Service 內部的端口，其他 Pod 透過這個端口存取 Flask 應用
+    targetPort: 5010  # 指向 Flask 應用程式在 Pod 內部運行的端口
+    nodePort: 30080  # 將 5010 端口映射到 Kubernetes 節點的 30080 端口，使外部可以存取

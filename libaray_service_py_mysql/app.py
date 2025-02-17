@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 # 建立 Flask 應用實例
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'  # 資料庫檔案：books.db
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'  # 資料庫檔案：books.db
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@127.0.0.1/flask_book_app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'secret_key'  # 用於 flash 訊息
 

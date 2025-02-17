@@ -1,15 +1,57 @@
+### minikube command
+ - ``minikube start --driver=docker > /dev/null 2>&1 &``
+ - ``minikube status``
+ - ``minikube start --driver=docker``
 
-### k8s kubctel command 
+### kubectle 成功紀錄
+ - 抓取docker 映像檔案到 minikube 裡面
+ - minikube image load flask-book-app  
+ - kubectl -f flask-pod.yaml --(pod)
+ - kubectl -f flask-service.yaml --(service)
+ - kubectl minikube service flask-service -- or
+ - kubectl minikube service flask-service --url
+
+ - 不採用 yaml 建立
+ - kubectl run mypod --image=flask-book-app --image-pull-policy=Never --port=5010
+ - kubectl port-forward pod/mypod 5010:5010
+
+
+### k8s kubctl command 
 
  - kubectl start 
  - kubectl apply -f flask-deployment.yaml
+ - kubectl apply -f service.yaml
+
+ - 
  - list all pods
  - kubectl get pods
- - ubectl scale deployment flask-app --replicas=0
+ - kubectl scale deployment flask-app --replicas=0
  - kubectl describe pod
 
+|***步驟***|***	指令 ***|
+|----------|-----------|
+|部署 Flask 服務|	kubectl apply -f flask-service.yaml|
+|檢查 Service 是否啟動|	kubectl get services|
+|測試 Flask 服務（Minikube）|	minikube service flask-service|
+|測試 Flask 服務（手動）|	curl http://$(minikube ip):30080|
+|測試 Flask 服務（內部 Pod）|	kubectl exec -it <pod-name> -- curl http://flask-service:5000|
+|停止 Service	|kubectl delete service flask-service|
+|詳細錯誤 log| kubectl describe pod <flask-app-pod-name>|
+|詳細錯誤 log| kubectl logs <flask-app-pod-name>|
+|修改service| kubectl edit service flask-service|
 
 
+### summary
+|***Command***|***Function***|
+|-------------|--------------|
+|kubectl get pods|List all Pods|
+|kubectl get deployments|List all Deployments|
+|kubectl get services|List all Services|
+|kubectl get nodes|List all Kubenetes node|
+|kubectl get namepspace | List all Namespaces| 
+
+
+### DOCKER cmd
 
 ### 1.Difference Between docker run and docker start
 |**Command**| **Description**|	**Use Case**|
@@ -99,7 +141,7 @@ docker ps
 如果這個命令沒有報錯，那麼 Docker 應該已經恢復正常。
 
 docker 
-docker run -d -p 5000:5000 flask-book-app
+docker run -d -p 5010:5010 flask-book-app
 
 docker build -t flask-book-app .
 

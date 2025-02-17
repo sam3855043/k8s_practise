@@ -1,0 +1,13 @@
+apiVersion: v1  # 指定 Kubernetes API 版本
+kind: Pod  # 定義 Kubernetes Pod，Pod 是 Kubernetes 部署的最小單位
+metadata:
+  name: flask-book-service  # Pod 的名稱，應用程式可透過這個名稱找到該 Pod
+  labels:
+    app: flask-book-app  # 設置標籤，方便 Service 或 Deployment 選取這個 Pod
+spec:
+  containers:  # 定義該 Pod 內包含的容器
+  - name: flask-container  # 容器的名稱
+    image: flask-book-app:latest   # 容器的映像檔，這裡使用的是本地建置的 Flask 應用映像
+    imagePullPolicy: Never  # 設定 Kubernetes 不要從 Docker Hub 拉取映像，而是使用本地映像
+    ports:
+    - containerPort: 5010  # 這個容器對外開放的端口，Flask 應用運行在 5010 端口
