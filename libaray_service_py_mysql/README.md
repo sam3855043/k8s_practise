@@ -98,6 +98,97 @@ API Endpoints
 * /borrow/<book_id> - Borrow a book
 * /return/<book_id> - Return a book
 
+## Database Setup
+
+### MySQL Configuration
+1. Install MySQL Server
+```bash
+# For Ubuntu/Debian
+sudo apt-get install mysql-server
+
+# For macOS using Homebrew
+brew install mysql
+```
+
+2. Start MySQL Service
+```bash
+# For Ubuntu/Debian
+sudo systemctl start mysql
+
+# For macOS
+brew services start mysql
+```
+
+3. Create Database and User
+```sql
+# Login to MySQL
+mysql -u root -p
+
+# Create database
+CREATE DATABASE flask_book_app;
+
+# Create user and grant privileges
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'mysql';
+GRANT ALL PRIVILEGES ON flask_book_app.* TO 'root'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### Default Database Settings
+```python
+DB_USER = 'root'
+DB_PASSWORD = 'mysql'
+DB_HOST = '127.0.0.1'
+DB_NAME = 'flask_book_app'
+```
+
+### Initial Data
+The system will automatically initialize with 20 sample books:
+- 10 Chinese books (Programming, ML, AI topics)
+- 10 English books (Similar topics in English)
+
+### Database Schema
+```sql
+-- Books Table
+CREATE TABLE book (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    published_date VARCHAR(20),
+    is_borrowed BOOLEAN DEFAULT FALSE,
+    image_url VARCHAR(500)
+);
+
+-- Borrow Records Table
+CREATE TABLE borrow_record (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    book_id INTEGER NOT NULL,
+    borrower_name VARCHAR(100) NOT NULL,
+    borrow_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    return_date DATETIME,
+    FOREIGN KEY (book_id) REFERENCES book(id)
+);
+
+-- Users Table
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(200) NOT NULL,
+    login_attempts INTEGER DEFAULT 0,
+    locked_until DATETIME
+);
+```
+
+### Database Management
+```bash
+# Backup database
+mysqldump -u root -p flask_book_app > backup.sql
+
+# Restore database
+mysql -u root -p flask_book_app < backup.sql
+
+# Monitor database connections
+SHOW PROCESSLIST;
+```
 
 ## Security Features
 * Password hashing using Bcrypt
