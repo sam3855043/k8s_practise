@@ -47,7 +47,7 @@ project_root/
 ## Screenshots
 
 ### Homepage
-![Homepage](screenshots/homepage1.png)
+![Homepage](screenshots/homepage.png)
 
 ### Login Page
 ![Login](screenshots/login.png)
