@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app-mysql
+  template:
+    metadata:
+      labels:
+        app: flask-app-mysql
+    spec:
+      containers:
+      - name: flask-app-mysql
+        image: your-flask-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5010
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: root
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: DB_NAME
+          value: mydb

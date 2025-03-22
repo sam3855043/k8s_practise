@@ -14,19 +14,32 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:5.7
+        #image: arm64v8/mysql:5.7    # 改用支援 ARM64 的映像檔
+        # 或使用
+        image: mysql:8.0          # MySQL 8.0 也支援 ARM64
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3306
-        envFrom:
-        - configMapRef:
-            name: mysql-config
-        - secretRef:
-            name: mysql-secret
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_DATABASE
+          value: "mydb"
+        - name: MYSQL_USER
+          value: "user"
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_PASSWORD
         volumeMounts:
-        - name: mysql-storage
+        - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-storage
+      - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pvc
 ---

@@ -1,0 +1,13 @@
+library_service_py-mysql/__pycache__
+library_service_py-mysql/password
+.venv
+#flask-deployment.yaml
+flask-pod.yaml
+ingress.yaml
+mysql-pv.yaml
+mysql-secret.yaml
+mysql-service.yaml
+service-test.yaml
+#service.yaml
+
+
