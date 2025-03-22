@@ -391,7 +391,7 @@ if __name__ == '__main__':
 
             # 檢查資料庫是否已有書籍，若無則插入 20 本預設書籍
             if Book.query.count() == 0:
-                for book in default_books_cn + default_books_en:
+                for book in default_books_en + default_books_cn:
                     new_book = Book(
                         title=book["title"], 
                         author=book["author"], 
