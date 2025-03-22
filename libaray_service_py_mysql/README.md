@@ -3,7 +3,7 @@
 A Flask-based library management system with user authentication and book borrowing functionality.
 
 
-![1](libaray_service_py_mysql/screenshots/hompage.png)
+![1](screenshots/homepage.png)
 
 
 ## Features
@@ -43,6 +43,18 @@ project_root/
 │ └── images/ # Book cover images 
 └── README.md
 ```
+
+## Screenshots
+
+### Homepage
+![Homepage](screenshots/homepage1.png)
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Book Management
+![Book Management](screenshots/book_management.png)
+
 ## Setup Instructions
 
 1. Clone the repository
