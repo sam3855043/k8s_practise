@@ -2,7 +2,7 @@
 
 A Flask-based library management system with user authentication and book borrowing functionality.
 
-(/screenshots/homepage.png)
+(/libaray_service_py_mysql/screenshots/hompage.png)
 
 
 ## Features
