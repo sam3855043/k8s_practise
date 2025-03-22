@@ -3,15 +3,15 @@
  - ``minikube status``
  - ``minikube start --driver=docker``
 
-### kubectle 成功紀錄
- - 抓取docker 映像檔案到 minikube 裡面
+### kubectle succssful
+ - download docker into minikube 
  - minikube image load flask-book-app  
  - kubectl -f flask-pod.yaml --(pod)
  - kubectl -f flask-service.yaml --(service)
  - kubectl minikube service flask-service -- or
  - kubectl minikube service flask-service --url
 
- - 不採用 yaml 建立
+ - NO yaml building
  - kubectl run mypod --image=flask-book-app --image-pull-policy=Never --port=5010
  - kubectl port-forward pod/mypod 5010:5010
 
