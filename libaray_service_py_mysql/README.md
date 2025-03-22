@@ -26,7 +26,7 @@ A Flask-based library management system with user authentication and book borrow
 - **Container**: Docker/Kubernetes ready
 
 ## Project Structure
-
+```
 project_root/
 ├── screenshots/
 │   ├── login.png
@@ -39,7 +39,9 @@ project_root/
 │ ├── borrow.html # Borrowing system 
 │ └── add_book.html # Add book form 
 ├── static/ 
-│ └── images/ # Book cover images └── README.md
+│ └── images/ # Book cover images 
+└── README.md
+```
 ## Setup Instructions
 
 1. Clone the repository
